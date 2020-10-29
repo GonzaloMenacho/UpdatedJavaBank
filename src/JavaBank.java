@@ -7,14 +7,21 @@ import javax.swing.border.*;
 
 public class JavaBank extends JFrame {
 
-  /**
-   *
-   */
+
   private static final long serialVersionUID = 1L;
   // Make these variables publicly available
   public String Name;
   public int Accountnum;
   public int Balance;
+
+  private void displayAccountDetails(String bName, String aName,
+      int aNum, int aBal) {
+    displayJTextArea.setText("Bank Name : " + bName
+        + "\nAccount Holder : " + aName
+        + "\nAccount Number : " + aNum
+        + "\nAccount balance: " + aBal);
+
+  }//end method displayAccountDetails
 
 
   // JPanel for user inputs
@@ -296,8 +303,8 @@ public class JavaBank extends JFrame {
       //emptyAccount = i;
 
       displayJTextArea.setText(
-          myAccounts[noAccounts].getaccountname() + " " + myAccounts[noAccounts].getaccountnum()
-              + " " + myAccounts[noAccounts].getbalance());
+          myAccounts[noAccounts].getAccountName() + " " + myAccounts[noAccounts].getAccountNum()
+              + " " + myAccounts[noAccounts].getBalance());
       noAccounts++;
       System.out.println(noAccounts);
     } else {
@@ -351,30 +358,30 @@ public class JavaBank extends JFrame {
       int Withdraw = Integer.parseInt(WithdrawJTextField.getText());
 
       for (int i = 0; i < noAccounts; i++) {
-        if ((myAccounts[i].getaccountnum() == Accountnum) && (Deposit > 0)) {
-          myAccounts[i].setbalance(myAccounts[i].getbalance() + Deposit);
-          displayJTextArea.setText(
-              myAccounts[i].getaccountname() + " " + myAccounts[i].getaccountnum() + " "
-                  + myAccounts[i].getbalance());
-        }
+        displayJTextArea.setText(
+            "Bank Name : " + myAccounts[i].getBankName()
+                + "\nAccount Holder : " + myAccounts[i].getAccountName()
+                + "\nAccount Number : " + myAccounts[i].getAccountNum()
+                + "\nAccount balance: " + myAccounts[i].getBalance());
 
-        if ((myAccounts[i].getaccountnum() == Accountnum) && (Withdraw > 0)) {
-          myAccounts[i].setbalance(myAccounts[i].getbalance() - Withdraw);
-          displayJTextArea.setText(
-              myAccounts[i].getaccountname() + " " + myAccounts[i].getaccountnum() + " "
-                  + myAccounts[i].getbalance());
-        }
 
+
+      if ((myAccounts[i].getAccountNum() == Accountnum) && (Withdraw > 0)) {
+        myAccounts[i].setBalance(myAccounts[i].getBalance() - Withdraw);
+        displayJTextArea.setText(
+            myAccounts[i].getAccountName() + " " + myAccounts[i].getAccountNum() + " "
+                + myAccounts[i].getBalance());
       }
-    }
 
-    // clear other JTextFields for new data
+    }
+  }
+
+  // clear other JTextFields for new data
     NameJTextField.setText(" ");
     AccountnumJTextField.setText("0");
     BalanceJTextField.setText("0");
     DepositJTextField.setText("0");
     WithdrawJTextField.setText("0");
-
 
   }
 
@@ -389,8 +396,8 @@ public class JavaBank extends JFrame {
       for (int i = 0; i < noAccounts; i++) {
 
         displayJTextArea.append(
-            myAccounts[i].getaccountname() + " " + myAccounts[i].getaccountnum() + " "
-                + myAccounts[i].getbalance() + "\n");
+            myAccounts[i].getAccountName() + " " + myAccounts[i].getAccountNum() + " "
+                + myAccounts[i].getBalance() + "\n");
 
 
       }
@@ -412,6 +419,12 @@ public class JavaBank extends JFrame {
 
     JavaBank application = new JavaBank();
     application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
   }
 
+
 }
+
+
